@@ -28,15 +28,17 @@ class ManageLocationPage extends Component {
     }
 
     setLocationCategory(categories, field, val, id){
-        return (field!=='category') ? 
-                        val :  
-                        {id: filter(categories,'name',val)[0].id,'name' : val};
+        return  val === '' ?  
+                    {id:'','name' : val} :
+                    {id: filter(categories,'name',val)[0].id,'name' : val};
     }
     updateLocationState(event){
         const {categories}= this.props;
         const field = event.target.name;
+        const value =  event.target.value;
         let location = Object.assign({},this.state.location);
-        location[field] = this.setLocationCategory(categories, field, event.target.value, location.id);
+        location[field] = (field!=='category') ? 
+                                value : this.setLocationCategory(categories, field, value, location.id);
         return this.setState({location:location});
     }
 
