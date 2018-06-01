@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<script>
+val='view';
+let btns={
+            "view":{title:"view", icon:"eye", active:false, disabled:false},
+            "delete":{title:"delete",icon:"minus", active:false, disabled:false},
+            "update":{title:"update",icon:"edit",active:false, disabled:false}
+        };
+let buttons={...btns};
+Object.keys(buttons).forEach(key => {if(key !== val)  buttons[key].active=false;});//reset active 
+buttons[val].active= !buttons[val].active;
+console.table(buttons);
+
+</script>
+</body>
+</html>

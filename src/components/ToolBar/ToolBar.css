@@ -1,0 +1,15 @@
+
+
+.toolbar-item{
+    outline: none;
+}
+
+.toolbar-item.active{
+    color: blue;
+}
+
+.toolbar-item.rounded{
+    min-width: 24px;
+    border-radius: 50%;
+    background-color: aquamarine;
+}

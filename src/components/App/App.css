@@ -1,0 +1,17 @@
+.App-header__logo{
+    width: 100%; 
+    max-width: 200px;
+}
+
+
+.screen{
+    height: 100vh;
+    position: relative;
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
