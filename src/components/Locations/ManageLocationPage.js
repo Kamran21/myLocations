@@ -7,7 +7,7 @@ import LocationForm from './LocationForm';
 
 import {actions as locationActions} from '../../duckes/locations';
 
-import {getElementByID} from '../../utils';
+import {getElementByID, filter} from '../../utils';
 
 class ManageLocationPage extends Component {
 
@@ -27,10 +27,16 @@ class ManageLocationPage extends Component {
     
     }
 
+    setLocationCategory(categories, field, val, id){
+        return (field!=='category') ? 
+                        val :  
+                        {id: filter(categories,'name',val)[0].id,'name' : val};
+    }
     updateLocationState(event){
+        const {categories}= this.props;
         const field = event.target.name;
         let location = Object.assign({},this.state.location);
-        location[field]=event.target.value;
+        location[field] = this.setLocationCategory(categories, field, event.target.value, location.id);
         return this.setState({location:location});
     }
 
@@ -69,7 +75,7 @@ ManageLocationPage.propTypes={
 
 //Redux connect
 const mapStateToProps = ({locations, categories}, ownProps) => {
-    let location={id:'',name:'', address:'', coordinates:'', category:''};
+    let location={id:'',name:'', address:'', coordinates:'', category:{id:'',name:''}};
     return {
         location : getElementByID(locations, ownProps.match.params.id) || location,
         categories : categories

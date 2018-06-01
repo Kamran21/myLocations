@@ -18,7 +18,7 @@ const LocationRow = ({location, type, action}) => {
             <th scope="row">{name}</th>
             <td>{address}</td>
             <td>{coordinates}</td>
-            <td>{category}</td>
+            <td>{category.name}</td>
             <td><Link to={`${type}/${action}/${location.id}`}>{action}</Link></td>
         </tr>
     )

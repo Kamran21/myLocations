@@ -12,8 +12,8 @@ const LocationForm = ({location, categories, onSave, onChange, loading, errors})
             <TextInput name="name" label="Name" value={name} onChange={onChange} error={errors.name}></TextInput>
             <TextInput name="address" label="Address" value={address} onChange={onChange} error={errors.address}></TextInput>
             <TextInput name="coordinates" label="Coordinates" value={coordinates} onChange={onChange} error={errors.coordinates}></TextInput>
-            <SelectInput  name="category" label="Categories" value={category} defaultOption="-select-" options={categories} onChange={onChange} ></SelectInput> 
-            <button type="submit" disabled={ name==='' || address === '' || coordinates === '' || category === '' || category === 'select'} className="btn btn-primary">Save</button>
+            <SelectInput  name="category" label="Categories" value={category.name} defaultOption="-select-" options={categories} onChange={onChange} ></SelectInput> 
+            <button type="submit" disabled={ name==='' || address === '' || coordinates === '' || category.name === '' || category.name === 'select'} className="btn btn-primary">Save</button>
         </form>
     )
 }
