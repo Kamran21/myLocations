@@ -2,12 +2,12 @@ import React from 'react';
 import CategoryRow from "./CategoryRow";
 import GenericRow from './GenericRow';
 
-const CategoriesTable = ({categories, action, onClick, sort}) => {
+const CategoriesTable = ({categories, action, onClick, sort, icon}) => {
     
     const rowItem=(category, index) => {
         return ( category.name === 'generic' ? 
                             <GenericRow key={category.id}/> :
-                            <CategoryRow category={category} key={category.id} type="category" action={action}/>);
+                            <CategoryRow category={category} key={category.id} type="category" action={action} icon={icon}/>);
     }
 
 

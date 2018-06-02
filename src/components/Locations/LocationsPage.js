@@ -116,18 +116,21 @@ class LocationsPage extends Component {
 
     }
 
+    getIcon(toolbar,action){
+        return action === '' ? '' : toolbar[action].icon;
+    }
     //Render
     render(){
         let { categories, locations} = this.props;
-        const { action, filters, sort } = this.state;
+        const { action, filters, sort, toolbar } = this.state;
         locations= filters.locations || locations;
         return (
             
             <div>
                {/* <Massages categoriesSize={categoriesSize} locationSize={locationSize} filteredSize={locations.length} /> */}
-               <ToolBar buttons={this.state.toolbar} title="Locations" onClick={this.updateToolBarState} path="/location"/>
+               <ToolBar buttons={toolbar} title="Locations" onClick={this.updateToolBarState} path="/location"/>
                <FiltersForm categories={categories} onChange={this.updateFiltersState} filters={filters}/>
-               <LocationsTable locations={locations} onClick={this.updateSortState} sort={sort} action={action}/>
+               <LocationsTable locations={locations} onClick={this.updateSortState} sort={sort} action={action} icon={this.getIcon(toolbar, action)}/>
                
            </div> 
         )

@@ -2,10 +2,10 @@ import React from 'react';
 import PropTyps from 'prop-types';
 import LocationRow from "./LocationRow";
 
-const LocationsTable = ({locations, categories, action, onClick, sort}) => {
+const LocationsTable = ({locations, categories, action, onClick, sort, icon}) => {
 
     const rowItem=(location, index) => {
-        return (<LocationRow location={location} key={location.id} type="location" action={action}/>);
+        return (<LocationRow location={location} key={location.id} type="location" action={action} icon={icon}/>);
     }
 
     let nameSortIcon=<i name='name' className={sort.icon}></i>;

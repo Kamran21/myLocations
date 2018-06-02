@@ -1,15 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
-// import FontAwesomeIcon from "@fortawesome/react-fontawesome";
-// import fontawesome from "@fortawesome/fontawesome";
-// import { faEye } from "@fortawesome/fontawesome-free-solid";
-// import { faMinus } from "@fortawesome/fontawesome-free-solid";
-// import { faUEdit } from "@fortawesome/fontawesome-free-solid";
-// import { faUPlus } from "@fortawesome/fontawesome-free-solid";
 
 
-const LocationRow = ({location, type, action}) => {
+
+const LocationRow = ({location, type, action, icon}) => {
     // debugger;
     const {name, address, coordinates, category}=location;
 
@@ -19,7 +14,7 @@ const LocationRow = ({location, type, action}) => {
             <td>{address}</td>
             <td>{coordinates}</td>
             <td>{category.name}</td>
-            <td><Link to={`${type}/${action}/${location.id}`}>{action}</Link></td>
+            <td><Link to={`${type}/${action}/${location.id}`}><i className={icon} /></Link></td>
         </tr>
     )
 }
