@@ -81,9 +81,13 @@ class LocationsPage extends Component {
         let filters={...this.state.filters};
         filters[name]=value;
         console.log(utils.filterFunc);
-        filters['locations']= (name === 'group' && value=== true) ? 
-                                    utils.sortAndGroupByFunc(filters.locations || locations,'category','name', this.state.sort.dir):
-                                    utils.filterFunc(locations, 'category', filters.filter)
+        filters['locations'] = (name === 'group' && value=== true) ? 
+                                    utils.sortAndGroupByFunc(filters.locations || locations,'category.name','name', this.state.sort.dir):
+                                    utils.filterFunc(locations, 'category','name', filters.filter);
+
+        // filters['locations'] = (name === 'group' && value=== true) ? 
+        //                             utils.sortAndGroupByFunc(filters.locations || locations,'category','name', this.state.sort.dir):
+        //                             utils.filterFunc(locations, 'category', filters.filter);
 
         this.setState({'filters': filters});
     }

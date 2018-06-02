@@ -45,9 +45,33 @@ export const getElementByID=(items, id) => {
 
 export const sortFunc = (items, prop, dir) => orderBy(items, [prop],[dir]);
 
+export const filterDeep1 = (items, prop1, prop2, val) => items.filter(l=>l[prop1][prop2] === val);
+
+export const filterFunc = (items, prop1, prop2, val) => ( (val === '' || val === 'select') ? items : filterDeep1(items, prop1, prop2, val) );
+
 export const filter = (items, prop, val) => items.filter(l=>l[prop] === val);
 
-export const filterFunc = (items, prop, val) => ( (val === '' || val === 'select') ? items : filter(items, prop, val) );
+var sort = function (prop, arr) {
+    prop = prop.split('.');
+    var len = prop.length;
+    
+    arr.sort(function (a, b) {
+        var i = 0;
+        while( i < len ) {
+            a = a[prop[i]];
+            b = b[prop[i]];
+            i++;
+        }
+        if (a < b) {
+            return -1;
+        } else if (a > b) {
+            return 1;
+        } else {
+            return 0;
+        }
+    });
+    return arr;
+};
 
 export const sortAndGroupByFunc = (items, groupBy,  sortBy, dir) => {
     // items=groupByFunc(items, groupBy);
@@ -60,32 +84,33 @@ export const sortAndGroupByFunc = (items, groupBy,  sortBy, dir) => {
     items=groupByFunc(items, sortBy);
     let temp=[]
     for(const element in items){
-        temp=[...temp,...orderBy(items[element], groupBy)];
+        // temp=[...temp,...orderBy(items[element], groupBy)];
+        temp=[...temp,...sort(groupBy,items[element])];
     }
     return temp;
     
 }
 
-export const filterAndSortItems = (items ,dir, groupBy, filterBy) => {
+// export const filterAndSortItems = (items ,dir, groupBy, filterBy) => {
 
-    if(items.length>0){
-        let filtered=[...items];
+//     if(items.length>0){
+//         let filtered=[...items];
 
-        if(dir && dir!=='no'){
-            filtered=sortFunc(filtered, dir);
-        }
+//         if(dir && dir!=='no'){
+//             filtered=sortFunc(filtered, dir);
+//         }
 
-        if(filterBy && filterBy!=='select'){
-            filtered= filterFunc(filtered, filterBy);
+//         if(filterBy && filterBy!=='select'){
+//             filtered= filterFunc(filtered, filterBy);
 
-        } else if(groupBy){
+//         } else if(groupBy){
             
-            filtered=sortAndGroupByFunc(filtered, 'category', 'name', dir);
-        }
+//             filtered=sortAndGroupByFunc(filtered, 'category', 'name', dir);
+//         }
 
-        return filtered;
+//         return filtered;
 
-    }
+//     }
     
-    return items;
-};
+//     return items;
+// };
