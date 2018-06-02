@@ -1,5 +1,5 @@
 import v4 from 'node-uuid';
-
+import {types as locationTypes} from './locations'
 export const types = {
     CREATE_CATEGORY:"CREATE_CATEGORY",
     UPDATE_CATEGORY:"UPDATE_CATEGORY",
@@ -35,10 +35,30 @@ export const actions={
         category.id=v4();
         return { type : types.CREATE_CATEGORY, category };
     },
+    // updateCategory(category){
+    //     return { type : types.UPDATE_CATEGORY, category };
+    // },
+    // deleteCategory(id){
+    //     return { type : types.DELETE_CATEGORY, id };
+    // }
     updateCategory(category){
-        return { type : types.UPDATE_CATEGORY, category };
+
+        return function(dispatch, getState){
+            
+            dispatch({ type : types.UPDATE_CATEGORY, category });
+            dispatch({ type : locationTypes.UPDATE_CATEGORY_FOR_ALL_LOCATIONS, category });
+
+        }
+        
     },
     deleteCategory(id){
-        return { type : types.DELETE_CATEGORY, id };
+
+        return function(dispatch, getState){
+            
+            dispatch({ type : types.DELETE_CATEGORY, id:id });
+            dispatch({ type : locationTypes.UPDATE_CATEGORY_FOR_ALL_LOCATIONS, 'category':{id : id, name:'generic' } });
+        
+        }
+        
     }
 }
