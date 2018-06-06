@@ -4,11 +4,10 @@ import PropTypes from 'prop-types';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
-import {actions as categoryActions} from '../../duckes/locations';
+import {actions as locationActions} from '../../duckes/locations';
 import DeleteConfirmationForm from '../common/DeleteConfirmationForm';
-import CategoryDetails from '../Categories/CategoryDetails';
-
 import {getElementByID} from '../../utils';
+import LocationDetails from './LocationDetails';
 
 class DeleteCategoryPage extends Component {
 
@@ -43,7 +42,7 @@ class DeleteCategoryPage extends Component {
 
         return (
             <div>
-                <CategoryDetails category={this.props.category} title="Location Details"/>
+                <LocationDetails location={this.props.location} title="Location Details"/>
                 <DeleteConfirmationForm 
                     confirm={this.state.confirm}
                     onChange={this.updateConfirmationState}
@@ -58,7 +57,7 @@ class DeleteCategoryPage extends Component {
 
 //Prop Types validation
 DeleteCategoryPage.propTypes={
-    locations: PropTypes.array.isRequired,
+    location: PropTypes.object.isRequired,
     categories: PropTypes.array.isRequired,
     actions: PropTypes.object.isRequired
 };
@@ -68,8 +67,7 @@ DeleteCategoryPage.propTypes={
 //Redux connect
 const mapStateToProps = ({locations, categories}, ownProps) => {
     return {
-        category : getElementByID(categories, ownProps.match.params.id),
-        locations : locations,
+        location : getElementByID(locations, ownProps.match.params.id),
         categories : categories
     };
 
@@ -78,7 +76,7 @@ const mapStateToProps = ({locations, categories}, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
 
     return { 
-                'actions': bindActionCreators(categoryActions, dispatch)
+                'actions': bindActionCreators(locationActions, dispatch)
            };
 };
 

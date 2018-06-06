@@ -1,9 +1,34 @@
-/* body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-} */
+html {
+  height: 100%;
+}
 
-/* .filters .form-check{
-  margin-left: 10px;
+#root{
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Avoid the IE 10-11 `min-height` bug. */
+}
+
+.content {
+  flex: 1 0 auto; 
+}
+
+.App-header__logo {
+  width: 100%; 
+  max-width: 100px;
+}
+
+header {
+  background-color: #dcdcdc;
+}
+
+footer {
+  flex-shrink: 0;
+  /* margin-top: auto; */
+  /* background-color: #dcdcdc; */
+}
+
+/* .googleMapsReact < .container { 
+  background-color: red;
+  padding-left: 0;
+  padding-right: 0;
 } */

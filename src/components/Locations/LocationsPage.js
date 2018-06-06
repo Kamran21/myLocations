@@ -35,7 +35,6 @@ import './LocationsPage.css';
 
 */
 
-
 class LocationsPage extends Component {
 
     constructor(props) {
@@ -52,6 +51,7 @@ class LocationsPage extends Component {
                         action:'view',
                         filters:{'group':false, 'filter':'select', locations:null },
                         sort:{'dir':'no','icon':'fa fa-sort'},
+                        toggle:false
    
          }
 
@@ -59,7 +59,9 @@ class LocationsPage extends Component {
         this.updateToolBarState=this.updateToolBarState.bind(this);
         this.updateFiltersState=this.updateFiltersState.bind(this);
         this.updateSortState=this.updateSortState.bind(this);
+        this.onRowClick=this.onRowClick.bind(this);
     }
+
 
     updateToolBarState(event){
         event.preventDefault();
@@ -69,7 +71,7 @@ class LocationsPage extends Component {
         Object.keys(buttons).forEach(key => {if(key !== name)  buttons[key].active=false;});//reset active 
         buttons[name].active= !buttons[name].active;
         name=buttons[name].active ? name : '';
-        this.setState({'toolbar':buttons, action:name})
+        this.setState({'toolbar':buttons, action:name, toggle:false})
     }
 
     updateFiltersState(event) {
@@ -116,13 +118,28 @@ class LocationsPage extends Component {
 
     }
 
+    onRowClick(){
+        // let {toggle}=this.state;
+        this.setState(({toggle})=>{
+            // enable vibration support
+            navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
+
+            if (navigator.vibrate) { // vibration API supported
+                // alert('vibrate', navigator.vibrate);
+                navigator.vibrate(1000);
+            }
+            return {'toggle':!toggle};
+        });
+
+    }
+
     getIcon(toolbar,action){
         return action === '' ? '' : toolbar[action].icon;
     }
     //Render
     render(){
         let { categories, locations} = this.props;
-        const { action, filters, sort, toolbar } = this.state;
+        const { action, filters, sort, toolbar, toggle } = this.state;
         locations= filters.locations || locations;
         return (
             
@@ -130,7 +147,7 @@ class LocationsPage extends Component {
                {/* <Massages categoriesSize={categoriesSize} locationSize={locationSize} filteredSize={locations.length} /> */}
                <ToolBar buttons={toolbar} title="Locations" onClick={this.updateToolBarState} path="/location"/>
                <FiltersForm categories={categories} onChange={this.updateFiltersState} filters={filters}/>
-               <LocationsTable locations={locations} onClick={this.updateSortState} sort={sort} action={action} icon={this.getIcon(toolbar, action)}/>
+               <LocationsTable locations={locations} onClick={this.updateSortState} sort={sort} action={action} icon={this.getIcon(toolbar, action)} onRowClick={this.onRowClick} toggle={toggle}/>
                
            </div> 
         )

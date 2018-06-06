@@ -52,6 +52,7 @@ class LocationsPage extends Component {
         this.updateSortState=this.updateSortState.bind(this);
     }
 
+   
     updateToolBarState(event){
         event.preventDefault();
         const target = event.target;
@@ -108,7 +109,7 @@ class LocationsPage extends Component {
             <div>
                {/* <Massages categoriesSize={categoriesSize} locationSize={locationSize} filteredSize={locations.length} /> */}
                <ToolBar buttons={this.state.toolbar} title="Categories" onClick={this.updateToolBarState} path="/category" />
-               <CategoriesTable categories={categories} onClick={this.updateSortState} sort={sort} action={action} icon={this.getIcon(toolbar, action)}/>
+               <CategoriesTable categories={categories} onClick={this.updateSortState} sort={sort} action={action} icon={this.getIcon(toolbar, action)} />
            </div> 
         )
     }
