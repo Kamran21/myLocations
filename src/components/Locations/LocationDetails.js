@@ -7,13 +7,14 @@ const LocationDetails = ({location, title}) => {
     
     return (
         <div>
-            <h3>{title}</h3>
+            <h3 className="my-5 text-capitalize">{title}</h3>
             <div>{name}, {address}, {"(" + coordinates +")"}, {category.name}</div>
         </div>
     )
 }
 
 LocationDetails.propTypes={ 
+    title: PropTypes.string,
     location: PropTypes.object.isRequired
 };
 

@@ -1,15 +1,11 @@
-//ManageCategoryPage
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-
 import {actions as categoryActions} from '../../duckes/categories';
 import CategoryForm from './CategoryForm';
-
 import {getElementByID} from '../../utils';
+import toastr from 'toastr';
 
 class ManageCategoryPage extends Component {
 
@@ -47,7 +43,9 @@ class ManageCategoryPage extends Component {
             this.setState({errors:{'name':"This category allready exist!"}})
         } else {
             const { createCategory, updateCategory}=this.props.actions;
-            ( category.id === '' ? createCategory(category) : updateCategory(category) );
+            (category.id === '') ? 
+                (createCategory(category), toastr.success('category was added')) : 
+                (updateCategory(category), toastr.success('category was updated'));
             this.props.history.push('/categories');
         }
     }

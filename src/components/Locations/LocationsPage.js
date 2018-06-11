@@ -1,39 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 // import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-
-// import * as locationActions from '../actions/locationActions';
-// import {actions as filterActions} from '../../duckes/filters';
-
-// import Toolbar from '../components/common/toolbar';
 import LocationsTable from './LocationsTable';
 import FiltersForm from './FiltersForm';
 import * as utils from '../../utils';
 import ToolBar from '../ToolBar/ToolBar';
 import './LocationsPage.css';
-/*
-
-    const Massages = ({categoriesSize, locationSize, filteredSize}) => {
-        let messages;
-        if(categoriesSize === 0 && locationSize === 0)
-            messages='Categories and Locations lists are empty, Create a category to be able to manage locations';
-        else if(categoriesSize === 0 && locationSize > 0)
-            messages='You can View and Delete locations, Create a category to be able to Update and Add locations';
-        else if(locationSize === 0)
-            messages='No locations yet';
-        else if(filteredSize === 0)
-            messages='There is no locations with the filters applied';
-
-        return (
-            <div>
-            {messages}
-            </div>
-        )
-    }
-
-*/
 
 class LocationsPage extends Component {
 
@@ -52,8 +25,7 @@ class LocationsPage extends Component {
                         filters:{'group':false, 'filter':'select', locations:null },
                         sort:{'dir':'no','icon':'fa fa-sort'},
                         toggle:false
-   
-         }
+                     };
 
         //Bind functions
         this.updateToolBarState=this.updateToolBarState.bind(this);
@@ -144,7 +116,6 @@ class LocationsPage extends Component {
         return (
             
             <div>
-               {/* <Massages categoriesSize={categoriesSize} locationSize={locationSize} filteredSize={locations.length} /> */}
                <ToolBar buttons={toolbar} title="Locations" onClick={this.updateToolBarState} path="/location"/>
                <FiltersForm categories={categories} onChange={this.updateFiltersState} filters={filters}/>
                <LocationsTable locations={locations} onClick={this.updateSortState} sort={sort} action={action} icon={this.getIcon(toolbar, action)} onRowClick={this.onRowClick} toggle={toggle}/>

@@ -7,7 +7,7 @@ const DeleteConfirmationForm = ({confirm, onDelete, onChange, loading, errors, t
 
     return (
         <form onSubmit={onDelete}>
-            <h3>{title}</h3>
+            <h3 className="my-5 text-capitalize">{title}</h3>
             <p>Confirm delete by typeing 'YES'</p>
             <TextInput name="confirm" label="confirm" value={confirm} onChange={onChange} error={errors.confirm}></TextInput>
             <button type="submit" disabled={confirm !== 'YES' && confirm !== 'yes'} value="delete" className="btn btn-primary">Delete</button>
@@ -16,6 +16,7 @@ const DeleteConfirmationForm = ({confirm, onDelete, onChange, loading, errors, t
 }
 
 DeleteConfirmationForm.propTypes={
+    confirm: PropTypes.string,
     onDelete: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired,
     loading: PropTypes.bool,

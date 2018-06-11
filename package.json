@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "animate.css": "^3.6.1",
     "font-awesome": "^4.7.0",
     "google-maps-react": "^2.0.2",
     "history": "^4.7.2",
@@ -24,7 +25,8 @@
     "redux-devtools-extension": "^2.13.2",
     "redux-immutable-state-invariant": "^2.1.0",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "toastr": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",

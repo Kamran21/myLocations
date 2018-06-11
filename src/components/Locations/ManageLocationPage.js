@@ -8,6 +8,7 @@ import LocationForm from './LocationForm';
 import {actions as locationActions} from '../../duckes/locations';
 
 import {getElementByID, filter} from '../../utils';
+import toastr from 'toastr';
 
 class ManageLocationPage extends Component {
 
@@ -48,7 +49,10 @@ class ManageLocationPage extends Component {
         const { createLocation, updateLocation}=this.props.actions;
         // const {id}=this.props.match.params;
         const {location}=this.state;
-        ( location.id === '' ? createLocation(location) : updateLocation(location) );
+        location.id === '' ? 
+                (createLocation(location), toastr.success('location was added')) : 
+                (updateLocation(location), toastr.success('location was updated') );
+     
         this.props.history.push('/locations');
     }
 

@@ -1,13 +1,26 @@
 import React from 'react';
 import CategoryRow from "./CategoryRow";
 import GenericRow from './GenericRow';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 const CategoriesTable = ({categories, action, onClick, sort, icon}) => {
     
     const rowItem=(category, index) => {
-        return ( category.name === 'generic' ? 
-                            <GenericRow key={category.id}/> :
-                            <CategoryRow category={category} key={category.id} type="category" action={action} icon={icon}/>);
+        return (
+                <CSSTransition key={category.id} classNames={{
+                            enter:"animated",
+                            enterActive:"fade",
+                            exit:"animated",
+                            extActive:"fade"
+                        }}
+                        timeout={2000}> 
+                        {
+                            category.name === 'generic' ? 
+                                <GenericRow/> :
+                                <CategoryRow category={category}  type="category" action={action} icon={icon}/>
+                        }
+                </CSSTransition>
+            );
     }
 
 
@@ -21,9 +34,9 @@ const CategoriesTable = ({categories, action, onClick, sort, icon}) => {
                         <th scope="col">&nbsp;</th>
                     </tr>
                 </thead>
-                <tbody>
-                    { categories.map( rowItem ) }
-                </tbody>
+                <TransitionGroup component="tbody">
+                        { categories.map( rowItem ) }
+                </TransitionGroup>
             </table>
         </div>
     )

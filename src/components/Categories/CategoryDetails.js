@@ -7,13 +7,14 @@ const CategoryDetails = ({category, title}) => {
     
     return (
         <div>
-            <h3>{title}</h3>
+            <h3 className="my-5 text-capitalize">{title}</h3>
             <div>{name}</div>
         </div>
     )
 }
 
 CategoryDetails.propTypes={ 
+    title: PropTypes.string,
     category: PropTypes.object.isRequired
 };
 

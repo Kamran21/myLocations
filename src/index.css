@@ -1,5 +1,6 @@
 html {
   height: 100%;
+  /* font-size: 62.5%; */
 }
 
 #root{
@@ -14,7 +15,7 @@ html {
 
 .App-header__logo {
   width: 100%; 
-  max-width: 100px;
+  max-width: 10rem;
 }
 
 header {
@@ -27,8 +28,117 @@ footer {
   /* background-color: #dcdcdc; */
 }
 
-/* .googleMapsReact < .container { 
-  background-color: red;
-  padding-left: 0;
-  padding-right: 0;
-} */
+h1,h2,h3,h4,h5,h6{
+  font-weight: 300;
+}
+
+
+
+.trans-enter{
+  opacity: 0;
+  z-index: 1;
+}
+
+.trans-exit{
+  display: none;
+}
+
+.trans-enter.trans-enter-active, .trans-enter.trans-entered{
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.action-icon{
+  opacity: 0;
+  z-index: 1;
+  transform: translateY(2rem);
+  transition: opacity 500ms ease-in, transform 500ms ease-in;
+}
+
+
+
+
+
+
+.help-block {
+  transform-origin: center left;
+}
+
+.item-actions :not(:last-child){
+  margin-right : .5rem;
+}
+
+.message-enter {
+  opacity: 0.01;
+  transform: scale(0.9) translateY(50%);
+}
+
+.message-enter-active {
+  opacity: 1;
+  transform: scale(1) translateY(0%);
+  transition: all 500ms ease-out;
+}
+
+.message-exit {
+  opacity: 1;
+  transform: scale(1) translateY(0%);
+}
+
+.message-exit-active {
+  opacity: 0.01;
+  transform: scale(0.9) translateY(50%);
+  transition: all 500ms ease-out;
+}
+
+
+
+
+
+.btn-circle {
+  outline: none;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+  transition: transform 0.1s ease-in; 
+}
+
+.btn-circle:focus, .btn-circle.focus {
+  outline: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.btn-circle.btn-lg {
+  width: 50px;
+  height: 50px;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 25px;
+}
+
+.btn-circle.btn-xl {
+  width: 70px;
+  height: 70px;
+  padding: 10px 16px;
+  font-size: 24px;
+  line-height: 1.33;
+  border-radius: 35px;
+}
+
+.btn-circle.active, .btn-circle:hover {
+  transform: scale(1.2);
+  color: teal;
+}
+
+.btn-circle.active:hover {
+  transform: scale(1.1);
+}
+
+.toolbar__buttons :not(:last-child){
+  margin-right : 1rem;
+}

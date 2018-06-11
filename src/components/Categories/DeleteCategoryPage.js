@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-
 import {actions as categoryActions} from '../../duckes/categories';
 import CategoryDetails from './CategoryDetails';
 import DeleteConfirmationForm from '../common/DeleteConfirmationForm';
-
 import {getElementByID} from '../../utils';
+import toastr from 'toastr';
 
 class DeleteCategoryPage extends Component {
 
@@ -18,8 +16,8 @@ class DeleteCategoryPage extends Component {
         
         //Init state
         this.state = { 
-            confirm : null,
-            'errors':{}
+            confirm : '',
+            errors:{}
          }
 
         //Bind functions
@@ -34,14 +32,18 @@ class DeleteCategoryPage extends Component {
     deleteCategory(event){
         event.preventDefault();
         const { match, actions, history} = this.props;
-        actions.deleteCategory(match.params.id)
-        history.push('/categories');
+        if(match.params.id){
+            actions.deleteCategory(match.params.id)
+            toastr.success('category has been deleted');
+            history.push('/categories');
+        }  
     }
 
     //Render
     render(){
 
         return (
+            this.props.category &&
             <div>
                 <CategoryDetails category={this.props.category} title="Category Details"/>
                 <DeleteConfirmationForm 
@@ -58,7 +60,7 @@ class DeleteCategoryPage extends Component {
 
 //Prop Types validation
 DeleteCategoryPage.propTypes={
-    category: PropTypes.object.isRequired,
+    category: PropTypes.object,
     locations: PropTypes.array.isRequired,
     categories: PropTypes.array.isRequired,
     actions: PropTypes.object.isRequired

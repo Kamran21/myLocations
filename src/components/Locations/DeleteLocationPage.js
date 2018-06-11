@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-
 import {actions as locationActions} from '../../duckes/locations';
 import DeleteConfirmationForm from '../common/DeleteConfirmationForm';
 import {getElementByID} from '../../utils';
 import LocationDetails from './LocationDetails';
+import toastr from 'toastr';
 
 class DeleteCategoryPage extends Component {
 
@@ -17,8 +16,8 @@ class DeleteCategoryPage extends Component {
         
         //Init state
         this.state = { 
-            confirm : null,
-            'errors':{}
+            confirm : '',
+            errors:{}
          }
 
         //Bind functions
@@ -33,14 +32,19 @@ class DeleteCategoryPage extends Component {
     deleteLocation(event){
         event.preventDefault();
         const { match, actions, history} = this.props;
-        actions.deleteLocation(match.params.id)
-        history.push('/locations');
+        if(match.params.id){
+            actions.deleteLocation(match.params.id);
+            toastr.success('location has been deleted');
+            history.push('/locations');
+        }
     }
+        
 
     //Render
     render(){
 
         return (
+            this.props.location &&
             <div>
                 <LocationDetails location={this.props.location} title="Location Details"/>
                 <DeleteConfirmationForm 
@@ -57,7 +61,7 @@ class DeleteCategoryPage extends Component {
 
 //Prop Types validation
 DeleteCategoryPage.propTypes={
-    location: PropTypes.object.isRequired,
+    location: PropTypes.object,
     categories: PropTypes.array.isRequired,
     actions: PropTypes.object.isRequired
 };

@@ -7,7 +7,7 @@ const LocationForm = ({location, categories, onSave, onChange, loading, errors})
     const {name, address, coordinates, category} = location
     return (
         <form onSubmit={onSave}>
-            <h1>Manage Location</h1>
+            <h3 className="my-5 text-capitalize">Manage Location</h3>
             {/* {errors && <p className="alert alert-danger">{errors}</p>} */}
             <TextInput name="name" label="Name" value={name} onChange={onChange} error={errors.name}></TextInput>
             <TextInput name="address" label="Address" value={address} onChange={onChange} error={errors.address}></TextInput>

@@ -1,34 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import {connect} from 'react-redux';
-
 import * as utils from '../../utils';
 import CategoriesTable from './CategoriesTable';
 import ToolBar from '../ToolBar/ToolBar';
-
-/*
-
-    const Massages = ({categoriesSize, locationSize, filteredSize}) => {
-        let messages;
-        if(categoriesSize === 0 && locationSize === 0)
-            messages='Categories and Locations lists are empty, Create a category to be able to manage locations';
-        else if(categoriesSize === 0 && locationSize > 0)
-            messages='You can View and Delete locations, Create a category to be able to Update and Add locations';
-        else if(locationSize === 0)
-            messages='No locations yet';
-        else if(filteredSize === 0)
-            messages='There is no locations with the filters applied';
-
-        return (
-            <div>
-            {messages}
-            </div>
-        )
-    }
-
-*/
-
 
 class LocationsPage extends Component {
 
@@ -107,7 +82,6 @@ class LocationsPage extends Component {
         return (
             
             <div>
-               {/* <Massages categoriesSize={categoriesSize} locationSize={locationSize} filteredSize={locations.length} /> */}
                <ToolBar buttons={this.state.toolbar} title="Categories" onClick={this.updateToolBarState} path="/category" />
                <CategoriesTable categories={categories} onClick={this.updateSortState} sort={sort} action={action} icon={this.getIcon(toolbar, action)} />
            </div> 

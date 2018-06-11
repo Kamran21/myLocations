@@ -7,17 +7,8 @@ const FiltersForm = ({categories, onChange, filters}) => {
     
     const categoriesForSelect=categories.map(c => { return {text:c.name, value:c.name}; });
     return (
-        <form className="form-inline filters d-flex justify-content-center">
+        <form className="form-inline filters d-flex justify-content-center my-3">
 
-            {/* <label>
-                Group By:
-                <input
-                    name="groupBy"
-                    type="checkbox"
-                    checked={filters.groupBy}
-                    // defaultChecked={filters.groupBy}
-                    onChange={handleInputChange} />
-            </label> */}
             <SelectInput  
                 name="filter"
                 label="Filter"
@@ -31,13 +22,6 @@ const FiltersForm = ({categories, onChange, filters}) => {
                 label="Group by"
                 checked={filters.group}
                 onChange={onChange}/>
-            {/* <label>
-                {label}:
-                <select name="filterBy" onChange={handleInputChange} value={filters.filterBy}>
-                    <option value="select">-select-</option>
-                    {items.map(drawItems)}
-                </select>
-            </label> */}
             
         </form>
 

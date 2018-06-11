@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import {connect} from 'react-redux';
-// import {actions as categoryActions} from '../../duckes/categories';
-
 import {getElementByID} from '../../utils';
 import LocationDetails from './LocationDetails';
 

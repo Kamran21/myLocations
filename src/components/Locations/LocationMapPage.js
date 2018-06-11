@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {getElementByID} from '../../utils';
-
 import MapBox from '../common/MapBox';
-
 
 class LocationMapPage extends Component {
   constructor(props) {

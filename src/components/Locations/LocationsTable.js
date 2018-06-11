@@ -1,11 +1,22 @@
 import React from 'react';
 import PropTyps from 'prop-types';
 import LocationRow from "./LocationRow";
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 const LocationsTable = ({locations, categories, action, onClick, sort, icon, onRowClick, toggle}) => {
 
     const rowItem=(location, index) => {
-        return (<LocationRow location={location} key={location.id} type="location" action={action} icon={icon} onRowClick={onRowClick} toggle={toggle}/>);
+        return (
+                <CSSTransition key={location.id} classNames={{
+                            enter:"animated",
+                            enterActive:"fade",
+                            exit:"animated",
+                            extActive:"fade"
+                        }}
+                        timeout={1000}>
+                        <LocationRow location={location}  type="location" action={action} icon={icon} onRowClick={onRowClick} toggle={toggle}/>
+                </CSSTransition>
+            );
     }
 
     let nameSortIcon=<i name='name' className={sort.icon}></i>;
@@ -22,9 +33,11 @@ const LocationsTable = ({locations, categories, action, onClick, sort, icon, onR
                         <th scope="col w-10">&nbsp;</th>
                     </tr>
                 </thead>
-                <tbody>
+                
+                <TransitionGroup component='tbody'>
                     { locations.map( rowItem ) }
-                </tbody>
+                </TransitionGroup>
+                
             </table>)}
         </div>
     )

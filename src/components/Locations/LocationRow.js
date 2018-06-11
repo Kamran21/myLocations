@@ -1,18 +1,49 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
-
-
+import { CSSTransition } from 'react-transition-group';
 
 const LocationRow = ({location, type, action, icon, onRowClick, toggle}) => {
     // debugger;
     const {id, name, address, coordinates, category}=location;
     let icons = (toggle === true) ? 
-    (<div>
-        <Link to={`${type}/map/${id}`}><i className="fa fa-map-marker" /></Link>
-        <Link to={`${type}/view/${id}`}><i className="fa fa-eye" /></Link> 
-    </div>) :
-    (<Link to={`${type}/${action}/${id}`}><i className={icon} /></Link> );
+    (   
+        <CSSTransition 
+                        timeout={500}
+                        in={icon !== ''}
+                        classNames={'message'}
+                        mountOnEnter
+                        unmountOnExit
+                    >
+
+            <div className='item-actions'>
+                <Link to={`${type}/map/${id}`}>
+                    <button className="btn btn-default btn-circle">
+                        <i className="fa fa-map-marker" />
+                    </button>
+                </Link>
+                <Link to={`${type}/view/${id}`}>
+                    <button className="btn btn-default btn-circle">
+                        <i className="fa fa-eye" />
+                    </button>
+                </Link> 
+            </div>
+
+        </CSSTransition>
+    ) :
+    (<Link to={`${type}/${action}/${id}`}>
+        <CSSTransition 
+                        timeout={500}
+                        in={icon !== ''}
+                        classNames={'message'}
+                        mountOnEnter
+                        unmountOnExit
+                    >
+        <button className="btn btn-default btn-circle">
+            <i className={icon} />
+        </button>
+        </CSSTransition>
+    </Link> );
     return (
         <tr onClick={onRowClick}>
             <th scope="row">{name}</th>
