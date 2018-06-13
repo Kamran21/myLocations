@@ -24,9 +24,11 @@ const App = ({location}) => {
           
           <div className="content">
 
-            <header className="container App-header d-flex">
-              <img src={logo} className="App-header__logo" alt="logo" />
-              <h1 className="display-4 text-uppercase App-header__title d-flex align-items-center">Welcome To WellDone App</h1> 
+            <header className="container-fluid App-header">
+              <div className="container d-flex">
+                <img src={logo} className="App-header__logo" alt="logo" />
+                <h1 className="display-4 text-uppercase App-header__title d-flex align-items-center">Welcome To WellDone App</h1> 
+              </div>
             </header>
 
             <div className="container" >
@@ -63,7 +65,7 @@ const App = ({location}) => {
 
           </div>
 
-          <footer>
+          <footer className="container-fluid App-header">
             <MainNav/>
           </footer>
           

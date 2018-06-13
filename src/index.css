@@ -13,6 +13,11 @@ html {
   flex: 1 0 auto; 
 }
 
+.App-header{
+  background: linear-gradient(to right bottom, rgba(6, 154, 212, 0.98), rgba(52, 172, 220, 0.98) );
+  color: white;
+}
+
 .App-header__logo {
   width: 100%; 
   max-width: 10rem;
@@ -57,9 +62,6 @@ h1,h2,h3,h4,h5,h6{
 
 
 
-
-
-
 .help-block {
   transform-origin: center left;
 }
@@ -90,10 +92,6 @@ h1,h2,h3,h4,h5,h6{
   transition: all 500ms ease-out;
 }
 
-
-
-
-
 .btn-circle {
   outline: none;
   width: 30px;
@@ -103,7 +101,7 @@ h1,h2,h3,h4,h5,h6{
   font-size: 12px;
   line-height: 1.428571429;
   border-radius: 15px;
-  transition: transform 0.1s ease-in; 
+  transition: transform 0.1s ease-in, color 0.3s ease-in; 
 }
 
 .btn-circle:focus, .btn-circle.focus {
@@ -129,11 +127,17 @@ h1,h2,h3,h4,h5,h6{
   line-height: 1.33;
   border-radius: 35px;
 }
-
-.btn-circle.active, .btn-circle:hover {
+.btn-circle:hover {
   transform: scale(1.2);
   color: teal;
 }
+
+.btn-circle.active {
+  transform: scale(1.2);
+  color: white;
+  background-color: teal;
+}
+
 
 .btn-circle.active:hover {
   transform: scale(1.1);
@@ -141,4 +145,35 @@ h1,h2,h3,h4,h5,h6{
 
 .toolbar__buttons :not(:last-child){
   margin-right : 1rem;
+}
+/* **************  */
+.location-row{
+  cursor: pointer;
+}
+
+/* .item-actions{
+  max-width: 120px;
+} */
+
+.actions-cell{
+  min-width: 110px;
+}
+
+/* MainNav */
+.texto_grande {
+  font-size: 2rem;
+} 
+
+.main-nav .fa-3x{
+  color: whitesmoke;
+  transition: transform .3s ease-in;
+}
+
+.main-nav.active .fa-3x{
+  transform: scale(1.2);
+  color: white;
+}
+
+footer{
+  padding: 20px;
 }

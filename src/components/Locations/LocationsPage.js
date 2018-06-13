@@ -24,7 +24,7 @@ class LocationsPage extends Component {
                         action:'view',
                         filters:{'group':false, 'filter':'select', locations:null },
                         sort:{'dir':'no','icon':'fa fa-sort'},
-                        toggle:false
+                        toggle:{state:false, id:'', prev:''}
                      };
 
         //Bind functions
@@ -90,17 +90,24 @@ class LocationsPage extends Component {
 
     }
 
-    onRowClick(){
-        // let {toggle}=this.state;
+    onRowClick(location){
+    
         this.setState(({toggle})=>{
             // enable vibration support
             navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
-
             if (navigator.vibrate) { // vibration API supported
-                // alert('vibrate', navigator.vibrate);
                 navigator.vibrate(1000);
             }
-            return {'toggle':!toggle};
+            //toggle expanded menu on row click
+            let val='', prev='';;
+            prev = toggle.id;
+            if(prev !== location.id ){
+                val = true;
+            } else {
+                val = !toggle.state;
+            }
+
+            return {toggle:{state : val, id : location.id, prev : prev}};
         });
 
     }
@@ -119,7 +126,6 @@ class LocationsPage extends Component {
                <ToolBar buttons={toolbar} title="Locations" onClick={this.updateToolBarState} path="/location"/>
                <FiltersForm categories={categories} onChange={this.updateFiltersState} filters={filters}/>
                <LocationsTable locations={locations} onClick={this.updateSortState} sort={sort} action={action} icon={this.getIcon(toolbar, action)} onRowClick={this.onRowClick} toggle={toggle}/>
-               
            </div> 
         )
     }

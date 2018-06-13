@@ -27,7 +27,7 @@ BarButton.propTypes={
 const ToolBar = ({ buttons, onClick, title, path }) => {
 
     return (
-        <div className="toolbar">
+        <div className="toolbar animated bounceInDown">
             <h3 className="toolbar__title text-center my-5 text-capitalize">{title} manager</h3>
             <div className="toolbar__buttons d-flex justify-content-center">
               

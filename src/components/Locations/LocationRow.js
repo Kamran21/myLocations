@@ -6,7 +6,7 @@ import { CSSTransition } from 'react-transition-group';
 const LocationRow = ({location, type, action, icon, onRowClick, toggle}) => {
     // debugger;
     const {id, name, address, coordinates, category}=location;
-    let icons = (toggle === true) ? 
+    let icons = (toggle.state === true && toggle.id === location.id) ? 
     (   
         <CSSTransition 
                         timeout={500}
@@ -16,7 +16,7 @@ const LocationRow = ({location, type, action, icon, onRowClick, toggle}) => {
                         unmountOnExit
                     >
 
-            <div className='item-actions'>
+            <div className='item-actions animated fadeInRight'>
                 <Link to={`${type}/map/${id}`}>
                     <button className="btn btn-default btn-circle">
                         <i className="fa fa-map-marker" />
@@ -39,18 +39,20 @@ const LocationRow = ({location, type, action, icon, onRowClick, toggle}) => {
                         mountOnEnter
                         unmountOnExit
                     >
-        <button className="btn btn-default btn-circle">
-            <i className={icon} />
-        </button>
+        <div className='item-actions fadeInLeft'>
+            <button className="btn btn-default btn-circle">
+                <i className={icon} />
+            </button>
+        </div>
         </CSSTransition>
     </Link> );
     return (
-        <tr onClick={onRowClick}>
-            <th scope="row">{name}</th>
+        <tr className='location-row' onClick={() => onRowClick(location)}>
+            <th scope='row'>{name}</th>
             <td>{address}</td>
             <td>{coordinates}</td>
             <td>{category.name}</td>
-            <td>{icons}</td>
+            <td className='actions-cell'>{icons}</td>
         </tr>
     )
 }

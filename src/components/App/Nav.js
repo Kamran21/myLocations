@@ -1,42 +1,39 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {NavLink} from 'react-router-dom';
 
-// import FontAwesomeIcon from "@fortawesome/react-fontawesome";
-// import fontawesome from "@fortawesome/fontawesome";
-// import { faMapMarker } from "@fortawesome/fontawesome-free-solid";
-// import { faListAlt } from "@fortawesome/fontawesome-free-solid";
 
+const MainNav = () => {
+    return (<div className="container d-flex justify-content-center">
 
-class MainNav extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {  }
-    }
-    render() { 
-        return ( 
-            <div className="container">
-                <ul className="nav nav-pills nav-fill">
+        <div className="main-nav-item col-md-3">
 
-                    <li className="nav-item">
-                        <NavLink to="/locations" activeClassName="active" className="nav-link d-flex flex-column align-items-center">
-                        {/* <FontAwesomeIcon icon="map-marker" size="5x"/> */}
-                        <i className="fa fa-map-marker" />
-                           Locations
-                        </NavLink>
-                    </li>
+            <NavLink to="/locations" activeClassName="active" className="main-nav btn btn-block btn-lg btn-success">
 
-                    <li className="nav-item">
-                        <NavLink to="/categories" activeClassName="active" className="nav-link d-flex flex-column align-items-center">
-                        {/* <FontAwesomeIcon icon="list-alt" size="5x"/> */}
-                        <i className="fa fa-list-alt" />
-                            Categories
-                        </NavLink>
-                    </li>
-                
-                </ul>
-            </div>
-        );
-    }
+                <i className="fa fa-map-marker fa-3x" /><br />
+
+                <span className="texto_grande">
+                       Locations
+                </span>
+
+            </NavLink>
+
+        </div>
+
+        <div className="main-nav-item col-md-3">
+
+            <NavLink to="/categories" activeClassName="active" className="main-nav btn btn-block btn-lg btn-primary">
+
+                <i className="fa fa-list-alt fa-3x" /><br />
+
+                <span className="texto_grande">
+
+                    Categories
+                </span>
+
+            </NavLink>
+        </div>
+
+    </div>);
 }
  
 export default MainNav;
