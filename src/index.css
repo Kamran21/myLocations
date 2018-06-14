@@ -128,23 +128,51 @@ h1,h2,h3,h4,h5,h6{
   border-radius: 35px;
 }
 .btn-circle:hover {
-  transform: scale(1.2);
+  transform: scale(1.3);
   color: teal;
 }
 
 .btn-circle.active {
-  transform: scale(1.2);
+  transform: scale(1.3);
   color: white;
-  background-color: teal;
+  background-color: rgb(0,128,128, 0.8);
+  
 }
 
 
-.btn-circle.active:hover {
-  transform: scale(1.1);
+.btn-circle.active:hover, .actions-cell .btn-circle:hover {
+  transform: scale(1.3);
+  color: goldenrod;
 }
 
 .toolbar__buttons :not(:last-child){
   margin-right : 1rem;
+}
+
+/* .toolbar-item{
+  position: relative;
+} */
+
+.btn-text{
+  /* display: inline-block; */
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  top:-1.2em;
+  font-weight: 200;
+  left: 50%;
+  transform: translateX(-50%);
+  animation:grow .4s ease-in;
+}
+
+@keyframes grow{
+  from {opacity: 0;}
+  50% {opacity: .5;}
+  to {opacity: 1;}
+}
+
+.btn-text-hidden{
+  visibility: hidden;
 }
 /* **************  */
 .location-row{
@@ -157,11 +185,23 @@ h1,h2,h3,h4,h5,h6{
 
 .actions-cell{
   min-width: 110px;
+
 }
 
-/* MainNav */
+.btn-teal{
+  color: white;
+  background-color: rgb(0,128,128, 0.8);
+}
+
+
+/* Footer MainNav */
 .texto_grande {
   font-size: 2rem;
+  transition: transform .3s ease-in;
+} 
+
+.main-nav.active .texto_grande {
+  transform: rotate(180deg);
 } 
 
 .main-nav .fa-3x{
@@ -170,7 +210,7 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .main-nav.active .fa-3x{
-  transform: scale(1.2);
+  transform: scale(1.3);
   color: white;
 }
 

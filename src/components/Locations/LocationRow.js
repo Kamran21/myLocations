@@ -18,12 +18,12 @@ const LocationRow = ({location, type, action, icon, onRowClick, toggle}) => {
 
             <div className='item-actions animated fadeInRight'>
                 <Link to={`${type}/map/${id}`}>
-                    <button className="btn btn-default btn-circle">
+                    <button className="btn btn-teal btn-circle btn-lg">
                         <i className="fa fa-map-marker" />
                     </button>
                 </Link>
                 <Link to={`${type}/view/${id}`}>
-                    <button className="btn btn-default btn-circle">
+                    <button className="btn btn-teal btn-circle btn-lg">
                         <i className="fa fa-eye" />
                     </button>
                 </Link> 
@@ -40,7 +40,7 @@ const LocationRow = ({location, type, action, icon, onRowClick, toggle}) => {
                         unmountOnExit
                     >
         <div className='item-actions fadeInLeft'>
-            <button className="btn btn-default btn-circle">
+            <button className="btn btn-teal btn-circle btn-lg">
                 <i className={icon} />
             </button>
         </div>

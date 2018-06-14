@@ -9,7 +9,7 @@ const CategoryRow = ({category, type, action, icon}) => {
     return (
         <tr>
             <th scope="row">{name}</th>
-            <td>
+            <td className='actions-cell'>
                 <Link to={`${type}/${action}/${id}`}>
                     <CSSTransition 
                         timeout={500}
@@ -18,10 +18,12 @@ const CategoryRow = ({category, type, action, icon}) => {
                         mountOnEnter
                         unmountOnExit
                     >
-
-                        <button className="btn btn-default btn-circle help-block">
-                            <i className={`${icon}`} />
-                        </button>
+                    
+                        <div className='item-actions'>
+                            <button className="btn btn-teal btn-circle btn-lg help-block">
+                                <i className={`${icon}`} />
+                            </button>
+                        </div>
                     
                     </CSSTransition>
                 </Link>
