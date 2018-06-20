@@ -12,12 +12,9 @@ import registerServiceWorker from './registerServiceWorker';
 import App from './components/App/App';
 import configureStore from './configureStore';
 
-import '../node_modules/bootstrap/dist/css/bootstrap.css';
-import '../node_modules/font-awesome/css/font-awesome.min.css';
-import '../node_modules/animate.css/animate.min.css';
-import '../node_modules/toastr/build/toastr.min.css';
+import 'bootstrap/dist/js/bootstrap';
+import './styles/index.css';
 
-import './index.css';
 import { Route } from 'react-router-dom';
 // import thunk from 'redux-thunk';
 

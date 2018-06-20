@@ -1,4 +1,5 @@
 import React from 'react';
+import Loading from './Loading';
 
 import { GoogleApiWrapper, InfoWindow, Map, Marker } from 'google-maps-react';
 import apiKey from '../../configureMap';
@@ -50,8 +51,8 @@ const MapBox = ({google, onMapClick, onMarkerClick, point, activeMarker, showing
     
 }
 
-const LoadingContainer = (props) => (
-    <div>Map loading...</div>
+const LoadingContainer = (props) => ( 
+    <Loading/> 
 )
 
 

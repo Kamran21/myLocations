@@ -5,7 +5,42 @@ import { CSSTransition } from 'react-transition-group';
 const CategoryRow = ({category, type, action, icon}) => {
 
     const {id, name}=category;
-   
+    // let button=null;
+    // switch ({icon}) {
+    //     case 'fa fa-edit':
+
+    //         button=<div className='item-actions'>
+    //             <button className="btn btn-main btn-circle btn-lg help-block">
+    //                 <i className={`${icon}`} />
+    //             </button>
+    //         </div>;
+            
+    //         break;
+        
+    //     case 'fa fa-minus':
+
+    //         button=<div className='item-actions'>
+    //             <button className="btn btn-main btn-circle btn-lg help-block">
+    //                 <i className={`${icon}`} />
+    //             </button>
+    //         </div>;
+            
+    //         break;
+        
+    //     case 'fa fa-plus':
+
+    //         button=<div className='item-actions'>
+    //             <button className="btn btn-main btn-circle btn-lg help-block">
+    //                 <i className={`${icon}`} />
+    //             </button>
+    //         </div>;
+            
+    //         break;
+        
+    
+    //     default:
+    //         break;
+    // }
     return (
         <tr>
             <th scope="row">{name}</th>
@@ -18,13 +53,15 @@ const CategoryRow = ({category, type, action, icon}) => {
                         mountOnEnter
                         unmountOnExit
                     >
-                    
+
+            
                         <div className='item-actions'>
-                            <button className="btn btn-teal btn-circle btn-lg help-block">
+                            <button className="btn btn-main btn-circle btn-lg help-block">
                                 <i className={`${icon}`} />
                             </button>
                         </div>
-                    
+                        {/* {button} */}
+                   
                     </CSSTransition>
                 </Link>
             </td>

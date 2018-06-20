@@ -2,14 +2,14 @@ import React from 'react';
 import {NavLink} from 'react-router-dom';
 
 
-const MainNav = () => {
+const IconicBtnNav = () => {
     return (<div className="container d-flex justify-content-center">
 
         <div className="main-nav-item col-md-3">
 
             <NavLink to="/locations" activeClassName="active" className="main-nav btn btn-block btn-lg btn-success">
 
-                <i className="fa fa-map-marker fa-3x" /><br />
+                <i className="fa fa-map-marker fa-3x text-danger" /><br />
 
                 <span className="texto_grande">
                        Locations
@@ -36,4 +36,4 @@ const MainNav = () => {
     </div>);
 }
  
-export default MainNav;
+export default IconicBtnNav;

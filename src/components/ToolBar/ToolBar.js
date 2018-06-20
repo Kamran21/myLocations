@@ -68,7 +68,7 @@ class ToolBar  extends  Component {
                     <NavLink to={path} activeClassName="nav__link--active" className='nav__link'>
                         
                         <button className="btn btn-default btn-circle btn-lg" onMouseEnter={ () => this.onMouseEnter(3)} onMouseLeave={() => this.onMouseLeave(-1)}>
-                            { this.state.toggle === 3 && <span className='btn-text'>Add</span>}
+                            { this.state.toggle === 3 && <span className='btn-text btn-text-add'>Add</span>}
                             <i className="fa fa-plus" />
                         </button>
                     </NavLink>

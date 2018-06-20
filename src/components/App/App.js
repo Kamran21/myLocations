@@ -2,7 +2,7 @@ import React from 'react';
 import {Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
-import MainNav from './Nav';
+import IconicBtnNav from './IconicBtnNav';
 import LocationsPage from '../Locations/LocationsPage';
 import PageNotFound from '../404/PageNotFound';
 import CategoriesPage from '../Categories/CategoriesPage';
@@ -15,20 +15,26 @@ import DeleteLocationPage from '../Locations/DeleteLocationPage';
 import LocationMapPage from '../Locations/LocationMapPage';
 
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import NavigationMenu from './NavigationMenu';
 
 // import {connect} from 'react-redux';
 
 const App = ({location}) => {
+
     return (
       <React.Fragment>
           
           <div className="content">
+            
+            <header className="container-fluid app-header">
 
-            <header className="container-fluid App-header">
-              <div className="container d-flex">
-                <img src={logo} className="App-header__logo" alt="logo" />
-                <h1 className="display-4 text-uppercase App-header__title d-flex align-items-center">Welcome To WellDone App</h1> 
+              <NavigationMenu loggedIn={true}/>
+              
+              <div className="container d-flex align-items-end">
+                <img src={logo} className="app-header__logo" alt="logo" />
+                <h1 className="display-4 text-uppercase App-header__title d-flex align-items-center">My <i className="fa fa-map-marker text-danger" />Locations</h1> 
               </div>
+
             </header>
 
             <div className="container" >
@@ -65,8 +71,8 @@ const App = ({location}) => {
 
           </div>
 
-          <footer className="container-fluid App-header">
-            <MainNav/>
+          <footer className="container-fluid app-footer">
+            <IconicBtnNav/>
           </footer>
           
       </React.Fragment>

@@ -1,0 +1,11 @@
+:root {
+    --grediant-bg-darktolight: linear-gradient(to right, #1c79c0, #0389ff, #0dd3ff);
+    --grediant-bg-lighttodark: linear-gradient(36deg, #0dd3ff, #0389ff, #1c79c0);
+    --main-bg-btn:rgba(3,137,255, 0.8);
+    --main-color-btn-hover:  rgba(255,121,3,0.8);
+    --main-color-btn-active: rgba(0,0,0,0.8);
+    /* rgba(28,121,192,0.8); */
+    --main-color-black: black;
+    --main-color-white: white;
+  }
+  
