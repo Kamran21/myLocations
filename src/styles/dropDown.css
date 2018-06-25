@@ -1,0 +1,24 @@
+
+.dropdown-menu{
+    top:10px;
+    background-color: var(--main-bg-btn) !important;
+    color: var(--main-color-white);
+    font-size: 1.5rem;
+    /* transition: 0.5s; */
+  }
+  
+  .dropdown-item{
+    color: var(--main-color-white);
+    text-decoration: none;
+    /* cursor: pointer; */
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .dropdown-item:hover, .dropdown-item:focus{
+    background-color: var(--main-bg-btn);
+    color: var(--main-color-btn-hover) !important;
+    text-decoration: none;
+    /* cursor: pointer; */
+    align-items: center;
+  }

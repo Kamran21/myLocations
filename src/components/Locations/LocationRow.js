@@ -18,12 +18,12 @@ const LocationRow = ({location, type, action, icon, onRowClick, toggle}) => {
 
             <div className='item-actions animated fadeInRight'>
                 <Link to={`${type}/map/${id}`}>
-                    <button className="btn btn-main btn-circle btn-lg">
+                    <button className="btn btn-main btn-circle btn-md">
                         <i className="fa fa-map-marker text-danger" />
                     </button>
                 </Link>
                 <Link to={`${type}/view/${id}`}>
-                    <button className="btn btn-main btn-circle btn-lg">
+                    <button className="btn btn-main btn-circle btn-md">
                         <i className="fa fa-eye" />
                     </button>
                 </Link> 
@@ -40,7 +40,7 @@ const LocationRow = ({location, type, action, icon, onRowClick, toggle}) => {
                         unmountOnExit
                     >
         <div className='item-actions fadeInLeft'>
-            <button className="btn btn-main btn-circle btn-lg">
+            <button className="btn btn-main btn-circle btn-md">
                 <i className={icon} />
             </button>
         </div>
@@ -48,7 +48,7 @@ const LocationRow = ({location, type, action, icon, onRowClick, toggle}) => {
     </Link> );
     return (
         <tr className='location-row' onClick={() => onRowClick(location)}>
-            <th scope='row'>{name}</th>
+            <th scope='row'><span>{name}</span></th>
             <td>{address}</td>
             <td>{coordinates}</td>
             <td>{category.name}</td>

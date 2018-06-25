@@ -40,24 +40,6 @@ class NavigationMenu extends Component {
     }
 
     render(){
-        // let logged =this.props.loggedIn ? <NavLink to="/categories" activeClassName="active" className='log-in d-flex align-items-center'>
-    
-        //                                         <i className="fa fa-user menu-icon" />
-
-        //                                         <span className="menu-text">
-        //                                             Hello <strong>User</strong>
-        //                                         </span>
-
-        //                                   </NavLink> : <NavLink to="/categories" activeClassName="active" className='log-in d-flex align-items-center'>
-    
-        //                                                     <i className="fa fa-sign-in-alt menu-icon" />
-
-        //                                                     <span className="menu-text">
-        //                                                         Log In
-        //                                                     </span>
-
-        //                                                 </NavLink>
-
           
         let logged =this.props.loggedIn ? <React.Fragment>
                                                 <div className=" d-flex align-items-center dropdown show">

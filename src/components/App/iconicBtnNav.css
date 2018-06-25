@@ -1,0 +1,39 @@
+
+.main-nav-item{
+    background-color: var(--main-color-btn-hover);
+  }
+  
+  .main-nav{
+    color: lightgray;
+  }
+  
+  .texto_grande {
+    font-size: 2rem;
+    transition: transform .3s ease-in;
+  } 
+  
+  .main-nav-item:hover .main-nav, .main-nav-item:active .main-nav{
+    color: white !important;
+  }
+  
+  @media (max-width: 544px) {  
+    .texto_grande {
+      font-size: 1.5rem;
+    } 
+  }
+  
+  .main-nav.active .texto_grande {
+    transform: rotate(180deg);
+  } 
+  
+  
+  
+  .main-nav .fa-3x{
+    color: var(--main-color-white);
+    transition: transform .3s ease-in;
+  }
+  
+  .main-nav.active .fa-3x{
+    transform: scale(1.3);
+    color: var(--main-color-white);
+  }

@@ -27,7 +27,7 @@ const CategoriesTable = ({categories, action, onClick, sort, icon}) => {
     let nameSortIcon=<i name='name' className={sort.icon}></i>;
     return (
         <div className="my-3">
-            <table className="table table-bordered table-striped">
+            <table className="table table-bordered table-striped table-hover">
                 <thead>
                     <tr>
                         <th name='name' scope="col" className="col-sort" onClick={onClick}>Name {nameSortIcon}</th>

@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CheckBox from '../common/CheckBox';
 import SelectInput from '../common/SelectInput';
+import './FiltersForm.css';
+
 const FiltersForm = ({categories, onChange, filters}) => {
 
     

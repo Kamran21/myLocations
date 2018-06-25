@@ -4,7 +4,7 @@ const GenericRow = () => {
 
     return (
         <tr>
-            <th scope="row">generic</th>
+            <th scope="row"><span>generic</span></th>
             <td>(Read Only)</td>
         </tr>
     )

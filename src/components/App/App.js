@@ -1,6 +1,6 @@
 import React from 'react';
 import {Route, Switch, Redirect, withRouter } from 'react-router-dom';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import IconicBtnNav from './IconicBtnNav';
 import LocationsPage from '../Locations/LocationsPage';
@@ -26,13 +26,13 @@ const App = ({location}) => {
           
           <div className="content">
             
-            <header className="container-fluid app-header">
+            <header className="container-fluid app-header sticky-top">
 
               <NavigationMenu loggedIn={true}/>
               
               <div className="container d-flex align-items-end">
-                <img src={logo} className="app-header__logo" alt="logo" />
-                <h1 className="display-4 text-uppercase App-header__title d-flex align-items-center">My <i className="fa fa-map-marker text-danger" />Locations</h1> 
+                {/* <img src={logo} className="app-header__logo img-fluid" alt="logo" /> */}
+                <h1 className="text-uppercase">My<i className="fa fa-map-marker text-danger" />Locations</h1> 
               </div>
 
             </header>
@@ -71,7 +71,7 @@ const App = ({location}) => {
 
           </div>
 
-          <footer className="container-fluid app-footer">
+          <footer className="container-fluid app-footer fixed-bottom">
             <IconicBtnNav/>
           </footer>
           

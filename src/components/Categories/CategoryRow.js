@@ -5,45 +5,9 @@ import { CSSTransition } from 'react-transition-group';
 const CategoryRow = ({category, type, action, icon}) => {
 
     const {id, name}=category;
-    // let button=null;
-    // switch ({icon}) {
-    //     case 'fa fa-edit':
-
-    //         button=<div className='item-actions'>
-    //             <button className="btn btn-main btn-circle btn-lg help-block">
-    //                 <i className={`${icon}`} />
-    //             </button>
-    //         </div>;
-            
-    //         break;
-        
-    //     case 'fa fa-minus':
-
-    //         button=<div className='item-actions'>
-    //             <button className="btn btn-main btn-circle btn-lg help-block">
-    //                 <i className={`${icon}`} />
-    //             </button>
-    //         </div>;
-            
-    //         break;
-        
-    //     case 'fa fa-plus':
-
-    //         button=<div className='item-actions'>
-    //             <button className="btn btn-main btn-circle btn-lg help-block">
-    //                 <i className={`${icon}`} />
-    //             </button>
-    //         </div>;
-            
-    //         break;
-        
-    
-    //     default:
-    //         break;
-    // }
     return (
         <tr>
-            <th scope="row">{name}</th>
+            <th scope="row"><span>{name}</span></th>
             <td className='actions-cell'>
                 <Link to={`${type}/${action}/${id}`}>
                     <CSSTransition 
@@ -56,7 +20,8 @@ const CategoryRow = ({category, type, action, icon}) => {
 
             
                         <div className='item-actions'>
-                            <button className="btn btn-main btn-circle btn-lg help-block">
+                            {/* <button className="btn btn-main btn-circle btn-md help-block"> */}
+                            <button className="btn btn-main btn-circle btn-md">
                                 <i className={`${icon}`} />
                             </button>
                         </div>

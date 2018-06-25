@@ -23,7 +23,7 @@ const LocationsTable = ({locations, categories, action, onClick, sort, icon, onR
     return (
         <div className="my-3">
             {locations.length === 0 ? (<p className="text-center">No locations yet</p>) : (    
-            <table className="table table-bordered table-striped">
+            <table className="table table-bordered table-striped table-hover">
                 <thead>
                     <tr>
                         <th name='name' scope="col" className="col-sort" onClick={onClick}>Name {nameSortIcon}</th>

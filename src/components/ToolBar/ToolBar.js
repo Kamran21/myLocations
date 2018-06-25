@@ -8,7 +8,7 @@ import './ToolBar.css';
 const BarButton = ({config, onClick, toggle, onMouseEnter, onMouseLeave, i} ) => {
         
     const {title, disabled, icon, active} = config;
-    let css = 'btn btn-default btn-circle btn-lg';
+    let css = 'btn btn-circle btn-md';
     css= active ? `${css} active`: css;
 
     return(
@@ -65,10 +65,10 @@ class ToolBar  extends  Component {
                 <div className="toolbar__buttons d-flex justify-content-center">
                 
                     { Object.keys(buttons).map((b, index) => <BarButton config={buttons[b]} onClick={onClick} toggle={this.state.toggle} onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave} i={index} key={index}/>) }
-                    <NavLink to={path} activeClassName="nav__link--active" className='nav__link'>
+                    <NavLink to={path} activeClassName="active">
                         
-                        <button className="btn btn-default btn-circle btn-lg" onMouseEnter={ () => this.onMouseEnter(3)} onMouseLeave={() => this.onMouseLeave(-1)}>
-                            { this.state.toggle === 3 && <span className='btn-text btn-text-add'>Add</span>}
+                        <button className="btn btn-circle btn-md" onMouseEnter={ () => this.onMouseEnter(3)} onMouseLeave={() => this.onMouseLeave(-1)}>
+                            { this.state.toggle === 3 && <span className='btn-text'>Add</span>}
                             <i className="fa fa-plus" />
                         </button>
                     </NavLink>
