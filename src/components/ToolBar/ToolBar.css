@@ -1,4 +1,3 @@
-
-.toolbar__buttons :not(:last-child){
-    margin-right : 0.7rem;
+.toolbar__buttons :not(:last-child) {
+  margin-right: 0.7rem;
 }

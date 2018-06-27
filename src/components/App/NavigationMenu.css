@@ -1,103 +1,107 @@
 /* --main-bg-btn:rgba(3,137,255, 0.8);
 --main-color-btn-hover:  rgba(255,121,3,0.8); */
 
-@import './../../styles/vars.css';
-.overlay-content, .overlay{
-     display: flex;
-     flex-direction: row-reverse;
-     justify-content: flex-start;
-     padding-bottom: 0px;
+@import "./../../styles/vars.css";
+.overlay-content,
+.overlay {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+  padding-bottom: 0px;
 }
 
-.menu-btn, .close-btn{
-    text-align: right;
-    display: none;
-    cursor: pointer;
-    z-index: 100;
+.menu-btn,
+.close-btn {
+  text-align: right;
+  display: none;
+  cursor: pointer;
+  z-index: 100;
 }
 
-.close-btn{
-    position: absolute;
-    top: 0;
-    right: 0;
+.close-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
-.menu-item, .log-in{
-    color: var(--main-color-white);
-    text-decoration: none;
-    align-items: center;
+.menu-item,
+.log-in {
+  color: var(--main-color-white);
+  text-decoration: none;
+  align-items: center;
 }
 
-.menu-item:hover, .menu-item:focus,
-.log-in:hover, .log-in:focus{
-    color: var(--main-color-btn-hover) !important;
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 4px;
-    opacity: 1;
+.menu-item:hover,
+.menu-item:focus,
+.log-in:hover,
+.log-in:focus {
+  color: var(--main-color-btn-hover) !important;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  opacity: 1;
 }
 
-.menu-icon, .menu-text{
-    display: inline;
-    padding: 8px 8px 0 8px;
+.menu-icon,
+.menu-text {
+  display: inline;
+  padding: 8px 8px 0 8px;
 }
 
-.menu-icon{
-    padding-right: 0px;
+.menu-icon {
+  padding-right: 0px;
 }
 
-.menu-open{
-    width: 100%;
+.menu-open {
+  width: 100%;
 }
 
 @media (max-width: 768px) {
-    
-    .overlay{
-        height: 100%;
-        width: 0;
-        position: fixed;
-        z-index: 1;
-        top: 0;
-        left: 0;
-        background-color: var(--main-bg-btn);
-        overflow-x: hidden;
-        transition: 0.5s;
-    }
+  .overlay {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: var(--main-bg-btn);
+    overflow-x: hidden;
+    transition: 0.5s;
+  }
 
-    .menu-close{
-        width:0%;
-    }
+  .menu-close {
+    width: 0%;
+  }
 
-    .menu-open{
-        width: 100%;
-    }
+  .menu-open {
+    width: 100%;
+  }
 
-    .overlay-content{
-        display: block;
-        position: relative;
-        width: 100%;
-        text-align: center;
-    }
-    
-    .menu-item{
-        padding: 2rem;
-        text-decoration: none;
-        font-size: 3rem;
-        color: var(--main-color-white);
-        display: block;
-        transition: 0.3s;
-        display: flex;
-        align-items: baseline;
-    }
-    
-    .menu-btn, .close-btn{
-        padding: 1rem 1rem 0 0;
-        display: inline-block;
-        font-size: 1.5rem;
-    }
+  .overlay-content {
+    display: block;
+    position: relative;
+    width: 100%;
+    text-align: center;
+  }
 
-    .menu-btn{
-        padding-right: 0px;
-    }
+  .menu-item {
+    padding: 2rem;
+    text-decoration: none;
+    font-size: 3rem;
+    color: var(--main-color-white);
+    display: block;
+    transition: 0.3s;
+    display: flex;
+    align-items: baseline;
+  }
 
+  .menu-btn,
+  .close-btn {
+    padding: 1rem 1rem 0 0;
+    display: inline-block;
+    font-size: 1.5rem;
+  }
+
+  .menu-btn {
+    padding-right: 0px;
+  }
 }
-

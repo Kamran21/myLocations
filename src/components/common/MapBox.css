@@ -1,6 +1,6 @@
-.googleMapsReact{
-    margin: auto;
+.googleMapsReact {
+  margin: auto;
 }
-.googleMapsReact:first-child{
-    position: relative;
+.googleMapsReact:first-child {
+  position: relative;
 }
