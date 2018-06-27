@@ -62,7 +62,7 @@ class ToolBar  extends  Component {
             <div className="toolbar animated bounceInDown">
 
                 <h3 className="toolbar__title text-center my-5 text-capitalize">{title} manager</h3>
-                <div className="toolbar__buttons d-flex justify-content-center">
+                <div className="toolbar__buttons d-flex justify-content-center" data-toggle="sticky-onscroll">
                 
                     { Object.keys(buttons).map((b, index) => <BarButton config={buttons[b]} onClick={onClick} toggle={this.state.toggle} onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave} i={index} key={index}/>) }
                     <NavLink to={path} activeClassName="active">
