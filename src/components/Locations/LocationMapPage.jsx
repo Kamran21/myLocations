@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getElementByID } from "../../utils";
 import MapBox from "../common/MapBox";
+import Loading from "../common/Loading";
 
 class LocationMapPage extends Component {
   constructor(props) {
@@ -72,7 +73,8 @@ class LocationMapPage extends Component {
 
     if (point === null) {
       // Render loading state ...
-      elem = <div>loading...</div>;
+      // elem = <div>loading...</div>;
+      elem = <Loading/>
     } else {
       elem = (
         <MapBox
