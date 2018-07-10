@@ -1,72 +1,103 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import LocationForm from "./LocationForm";
-
 import { actions as locationActions } from "../../duckes/locations";
-
 import { getElementByID, filter } from "../../utils";
 import toastr from "toastr";
+import { Formik, Form, Field } from 'formik'
+import { object, string } from 'yup';
+import isEmpty from 'lodash/isEmpty'
+import FormikTextInput from "../common/FormikTextInput";
+import FormikSelectInput from "../common/FormikSelectInput";
 
 class ManageLocationPage extends Component {
-  constructor(props) {
-    super(props);
 
-    //Init state
-    this.state = {
-      location: Object.assign({}, this.props.location),
-      errors: {}
-    };
-
-    //Bind functions
-    this.saveLocation = this.saveLocation.bind(this);
-    this.updateLocationState = this.updateLocationState.bind(this);
-  }
-
-  setLocationCategory(categories, field, val, id) {
-    return val === ""
-      ? { id: "", name: val }
-      : { id: filter(categories, "name", val)[0].id, name: val };
-  }
-  updateLocationState(event) {
-    const { categories } = this.props;
-    const field = event.target.name;
-    const value = event.target.value;
-    let location = Object.assign({}, this.state.location);
-    location[field] =
-      field !== "category"
-        ? value
-        : this.setLocationCategory(categories, field, value, location.id);
-    return this.setState({ location: location });
-  }
-
-  saveLocation(event) {
-    event.preventDefault();
-    const { createLocation, updateLocation } = this.props.actions;
-    // const {id}=this.props.match.params;
-    const { location } = this.state;
-    location.id === ""
-      ? (createLocation(location), toastr.success("location was added"))
-      : (updateLocation(location), toastr.success("location was updated"));
-
-    this.props.history.push("/locations");
+  setLocationCategory = (categories, val) => {
+    return { id: filter(categories, "name", val)[0].id, name: val };
   }
 
   //Render
   render() {
-    const categoriesForSelect = this.props.categories.map(c => {
-      return { text: c.name, value: c.name };
+    const categoriesForSelect =this.props.categories.map(c => {
+      return { label: c.name, value: c.name };
     });
     return (
-      <LocationForm
-        location={this.state.location}
-        categories={categoriesForSelect}
-        onChange={this.updateLocationState}
-        onSave={this.saveLocation}
-        errors={this.state.errors}
-      />
+      
+      <Formik
+
+          validationSchema={object().shape({
+            name: string()
+              .min(3, 'Name must be at least 3 characters long.')
+              .required('Name is required.'),
+            address: string()
+              .min(3, 'Address must be at least 3 characters long.')
+              .required('Address is required.'),
+            coordinates: string()
+              .required('Coordinates is required.'),
+            'category': string().nullable()
+              .required('Category is required.')
+          })}
+
+          initialValues={
+              {...this.props.location, category:''}
+          }
+
+          onSubmit={(values, actions) => {
+            const { createLocation, updateLocation } = this.props.actions;
+            const location = {...this.props.location, ...values};
+            location.category = this.setLocationCategory(this.props.categories, values.category.value);
+            if(location.id===''){
+              createLocation(location);
+              toastr.success("location was added");
+            } else {
+              updateLocation(location);
+              toastr.success("location was updated");
+            }
+            this.props.history.push("/locations");
+          }}
+
+          render={({errors, dirty, isSubmitting, values, setFieldValue}) => (
+            <Form>
+              <h3 className="my-5 text-capitalize">Manage Location</h3>
+              <Field
+                type="text"
+                name="name"
+                label="Name"
+                component={FormikTextInput}
+              />
+              <Field
+                type="text"
+                name="address"
+                label="Address"
+                component={FormikTextInput}
+              />
+              <Field
+                type="text"
+                name="coordinates"
+                label="Coordinates"
+                component={FormikTextInput}
+              />
+              <Field
+                name="category"
+                label="Categories"
+                value={this.props.location.category.name}
+                // value={values.category}
+                options={categoriesForSelect}
+                component={FormikSelectInput}
+                // multi={true}
+              />
+              <button
+                type="submit"
+                className="btn btn-default"
+                disabled={isSubmitting || !isEmpty(errors) || !dirty}
+              >
+                Save
+              </button>
+            </Form>
+          )}
+
+        />
     );
   }
 }

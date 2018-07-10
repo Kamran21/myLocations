@@ -3,63 +3,74 @@ import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { actions as categoryActions } from "../../duckes/categories";
-import CategoryForm from "./CategoryForm";
 import { getElementByID } from "../../utils";
 import toastr from "toastr";
+import { Formik, Form, Field } from 'formik'
+import { object, string } from 'yup';
+import isEmpty from 'lodash/isEmpty'
+import FormikTextInput from "../common/FormikTextInput";
 
 class ManageCategoryPage extends Component {
-  constructor(props) {
-    super(props);
-
-    //Init state
-    this.state = {
-      category: Object.assign({}, this.props.category),
-      errors: {}
-    };
-
-    //Bind functions
-    this.saveCategory = this.saveCategory.bind(this);
-    this.updateCategoryState = this.updateCategoryState.bind(this);
-    this.categoryExists = this.categoryExists.bind(this);
-  }
-
-  updateCategoryState(event) {
-    const field = event.target.name;
-    let category = Object.assign({}, this.state.category);
-    category[field] = event.target.value;
-    return this.setState({ category: category });
-  }
-
-  categoryExists(category) {
+ 
+  categoryExists = (category) => {
     return (
       this.props.categories.filter(c => c.name === category.name).length > 0
     );
   }
 
-  saveCategory(event) {
-    event.preventDefault();
-    const { category } = this.state;
-    if (this.categoryExists(category)) {
-      this.setState({ errors: { name: "This category allready exist!" } });
-    } else {
-      const { createCategory, updateCategory } = this.props.actions;
-      category.id === ""
-        ? (createCategory(category), toastr.success("category was added"))
-        : (updateCategory(category), toastr.success("category was updated"));
-      this.props.history.push("/categories");
-    }
-  }
-
   //Render
   render() {
     return (
-      <CategoryForm
-        category={this.state.category}
-        locations={this.props.locations}
-        onChange={this.updateCategoryState}
-        onSave={this.saveCategory}
-        errors={this.state.errors}
-      />
+      <Formik
+
+          validationSchema={object().shape({
+            name: string()
+              // .min(3, 'Name must be at least 3 characters long.')
+              .required('Name is required.')
+          })}
+
+          initialValues={
+              {...this.props.category}
+          }
+
+          onSubmit={(values, formikBag) => {
+            const category = {...this.props.category, ...values};
+            if (this.categoryExists(category)) {
+              // this.setState({ errors: { name: "This category allready exist!" } });
+              formikBag.setErrors({'name':'This category allready exists'});
+            } else {
+              const { createCategory, updateCategory } = this.props.actions;
+              if(category.id===''){
+                createCategory(category);
+                toastr.success("category was added");
+              } else {
+                updateCategory(category);
+                toastr.success("category was updated");
+              }
+              this.props.history.push("/categories");
+            }
+          }}
+
+          render={({errors, dirty, isSubmitting, values, setFieldValue}) => (
+            <Form>
+              <h3 className="my-5 text-capitalize">Manage Location</h3>
+              <Field
+                type="text"
+                name="name"
+                label="Name"
+                component={FormikTextInput}
+              />
+              <button
+                type="submit"
+                className="btn btn-default"
+                disabled={isSubmitting || !isEmpty(errors) || !dirty}
+              >
+                Save
+              </button>
+            </Form>
+          )}
+
+        />
     );
   }
 }
