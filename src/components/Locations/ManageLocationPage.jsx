@@ -3,25 +3,32 @@ import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { actions as locationActions } from "../../duckes/locations";
-import { getElementByID, filter } from "../../utils";
+import { getElementByID } from "../../utils";
 import toastr from "toastr";
 import { Formik, Form, Field } from 'formik'
-import { object, string } from 'yup';
+import { object, string, array } from 'yup';
 import isEmpty from 'lodash/isEmpty'
 import FormikTextInput from "../common/FormikTextInput";
 import FormikSelectInput from "../common/FormikSelectInput";
 
 class ManageLocationPage extends Component {
 
-  setLocationCategory = (categories, val) => {
-    return { id: filter(categories, "name", val)[0].id, name: val };
-  }
+  // setLocationCategory = (categories, val) => {
+  //   return { id: filter(categories, "name", val)[0].id, name: val };
+  // }
+
+  // setLocationCategories = (categories,cats) => {
+  //   return cats.map(val=>{return { id: filter(categories, "name", val.value)[0].id, name: val.value }});
+  // }
 
   //Render
   render() {
     const categoriesForSelect =this.props.categories.map(c => {
-      return { label: c.name, value: c.name };
+      return { id: c.id, name: c.name, label: c.name, value: c.name };
     });
+    let categories = this.props.location.categories.map(c => {
+      return { id: c.id, name: c.name, label: c.name, value: c.name };
+    })
     return (
       
       <Formik
@@ -35,8 +42,8 @@ class ManageLocationPage extends Component {
               .required('Address is required.'),
             coordinates: string()
               .required('Coordinates is required.'),
-            'category': string().nullable()
-              .required('Category is required.')
+            'categories': array()
+              .required('At least one category is required.')
           })}
 
           initialValues={
@@ -46,7 +53,9 @@ class ManageLocationPage extends Component {
           onSubmit={(values, actions) => {
             const { createLocation, updateLocation } = this.props.actions;
             const location = {...this.props.location, ...values};
-            location.category = this.setLocationCategory(this.props.categories, values.category.value);
+            // location.category = this.setLocationCategory(this.props.categories, values.category.value);
+            // location.categories = this.setLocationCategories(this.props.categories, values.categories);
+            
             if(location.id===''){
               createLocation(location);
               toastr.success("location was added");
@@ -79,13 +88,14 @@ class ManageLocationPage extends Component {
                 component={FormikTextInput}
               />
               <Field
-                name="category"
+                name="categories"
                 label="Categories"
-                value={this.props.location.category.name}
+                // value={this.props.location.category.name}
+                value={categories}
                 // value={values.category}
                 options={categoriesForSelect}
                 component={FormikSelectInput}
-                // multi={true}
+                multi={true}
               />
               <button
                 type="submit"
@@ -116,7 +126,7 @@ const mapStateToProps = ({ locations, categories }, ownProps) => {
     name: "",
     address: "",
     coordinates: "",
-    category: { id: "", name: "" }
+    categories: []
   };
   return {
     location: getElementByID(locations, ownProps.match.params.id) || location,

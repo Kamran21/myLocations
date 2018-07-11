@@ -5,7 +5,7 @@ import { CSSTransition } from "react-transition-group";
 
 const LocationRow = ({ location, type, action, icon, onRowClick, toggle }) => {
   // debugger;
-  const { id, name, address, coordinates, category } = location;
+  const { id, name, address, coordinates, categories } = location;
   let icons =
     toggle.state === true && toggle.id === location.id ? (
       <CSSTransition
@@ -52,7 +52,7 @@ const LocationRow = ({ location, type, action, icon, onRowClick, toggle }) => {
       </th>
       <td>{address}</td>
       <td>{coordinates}</td>
-      <td>{category.name}</td>
+      <td>{categories && categories.map(c=>`${c.name} `)}</td>
       <td className="actions-cell">{icons}</td>
     </tr>
   );

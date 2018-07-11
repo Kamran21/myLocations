@@ -46,12 +46,12 @@ export const actions = {
       });
     };
   },
-  deleteCategory(id) {
+  deleteCategory({id,generic}) {
     return function(dispatch, getState) {
       dispatch({ type: types.DELETE_CATEGORY, id: id });
       dispatch({
-        type: locationTypes.UPDATE_CATEGORY_FOR_ALL_LOCATIONS,
-        category: { id: id, name: "generic" }
+        type: locationTypes.DELETE_CATEGORY_FOR_ALL_LOCATIONS,
+        payload: { id, generic }
       });
     };
   }

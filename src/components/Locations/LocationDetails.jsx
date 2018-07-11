@@ -2,13 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const LocationDetails = ({ location, title }) => {
-  const { name, address, coordinates, category } = location;
+  const { name, address, coordinates, categories } = location;
 
   return (
     <div>
       <h3 className="my-5 text-capitalize">{title}</h3>
       <div>
-        {name}, {address}, {"(" + coordinates + ")"}, {category.name}
+        {name}, {address}, {"(" + coordinates + ")"}<div>{categories.map(c=>`${c.name} `)}</div>
       </div>
     </div>
   );

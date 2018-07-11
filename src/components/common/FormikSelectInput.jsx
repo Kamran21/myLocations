@@ -48,7 +48,7 @@ class FormikSelectInput extends Component{
           {...field}
           {...props}
           onChange={(selectValue) => this.setState(() => {
-            this.props.form.setFieldValue('category',selectValue)
+            this.props.form.setFieldValue('categories',selectValue)
             return { selectValue } 
           })}
           value={this.state.selectValue}

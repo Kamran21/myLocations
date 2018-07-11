@@ -31,7 +31,7 @@ class DeleteCategoryPage extends Component {
     event.preventDefault();
     const { match, actions, history } = this.props;
     if (match.params.id) {
-      actions.deleteCategory(match.params.id);
+      actions.deleteCategory({id:match.params.id,'generic':this.props.categories[0]});
       toastr.success("category has been deleted");
       history.push("/categories");
     }
