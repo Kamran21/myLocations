@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import TextInput from "../common/TextInput";
+import FormikReactDatePicker from "../common/FormikReactDatePicker";
 
 const CategoryForm = ({ category, onSave, onChange, loading, errors }) => {
   const { name } = category;

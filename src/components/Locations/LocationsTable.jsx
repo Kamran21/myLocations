@@ -57,9 +57,6 @@ const LocationsTable = ({
               <th name="address" scope="col">
                 Address
               </th>
-              <th name="coordinates" scope="col">
-                Coordinates
-              </th>
               <th name="category" scope="col">
                 Category
               </th>

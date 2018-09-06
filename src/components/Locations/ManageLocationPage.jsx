@@ -6,10 +6,11 @@ import { actions as locationActions } from "../../duckes/locations";
 import { getElementByID } from "../../utils";
 import toastr from "toastr";
 import { Formik, Form, Field } from 'formik'
-import { object, string, array } from 'yup';
+import { object, string, array, number } from 'yup';
 import isEmpty from 'lodash/isEmpty'
 import FormikTextInput from "../common/FormikTextInput";
 import FormikSelectInput from "../common/FormikSelectInput";
+import FormikPlacesAutoComplete from "../common/FormikPlacesAutoComplete";
 
 class ManageLocationPage extends Component {
 
@@ -23,6 +24,7 @@ class ManageLocationPage extends Component {
 
   //Render
   render() {
+    console.log(this.props);
     const categoriesForSelect =this.props.categories.map(c => {
       return { id: c.id, name: c.name, label: c.name, value: c.name };
     });
@@ -38,11 +40,15 @@ class ManageLocationPage extends Component {
               .min(3, 'Name must be at least 3 characters long.')
               .required('Name is required.'),
             address: string()
-              .min(3, 'Address must be at least 3 characters long.')
               .required('Address is required.'),
-            coordinates: string()
-              .required('Coordinates is required.'),
-            'categories': array()
+            latLng: object()
+                        .shape({lat: number(), lng: number()})
+                        .required('You must select an address.'),
+            // coordinates: object('Coordinates is required.').shape({ 
+            //   address: string().required(),  
+            //   latLng: object().shape({lat: number(), lng: number()})
+            //  }),
+            categories: array()
               .required('At least one category is required.')
           })}
 
@@ -79,13 +85,9 @@ class ManageLocationPage extends Component {
                 type="text"
                 name="address"
                 label="Address"
-                component={FormikTextInput}
-              />
-              <Field
-                type="text"
-                name="coordinates"
-                label="Coordinates"
-                component={FormikTextInput}
+                component={FormikPlacesAutoComplete}
+                options={{types:['(cities)']}}//get cities
+                // options={{types:['establishments']}}//bussnieses rather then cities
               />
               <Field
                 name="categories"
@@ -125,7 +127,7 @@ const mapStateToProps = ({ locations, categories }, ownProps) => {
     id: "",
     name: "",
     address: "",
-    coordinates: "",
+    latLng:{lat:null,lng:null},
     categories: []
   };
   return {

@@ -117,6 +117,7 @@ class NavigationMenu extends Component {
               to="/locations"
               activeClassName="active"
               className="menu-item d-flex justify-content-center m-3"
+              onClick={() => this.closeNav()}
             >
               <i className="fa fa-map-marker menu-icon" />
 
@@ -127,6 +128,7 @@ class NavigationMenu extends Component {
               to="/categories"
               activeClassName="active"
               className="menu-item d-flex justify-content-center m-3"
+              onClick={() => this.closeNav()}
             >
               <i className="fa fa-list-alt menu-icon" />
 

@@ -11,7 +11,7 @@ const LocationForm = ({
   loading,
   errors
 }) => {
-  const { name, address, coordinates, category } = location;
+  const { name, address, category } = location;
   return (
     <form onSubmit={onSave}>
       <h3 className="my-5 text-capitalize">Manage Location</h3>
@@ -30,13 +30,6 @@ const LocationForm = ({
         onChange={onChange}
         error={errors.address}
       />
-      <TextInput
-        name="coordinates"
-        label="Coordinates"
-        value={coordinates}
-        onChange={onChange}
-        error={errors.coordinates}
-      />
       <SelectInput
         name="category"
         label="Categories"
@@ -50,7 +43,6 @@ const LocationForm = ({
         disabled={
           name === "" ||
           address === "" ||
-          coordinates === "" ||
           category.name === "" ||
           category.name === "select"
         }

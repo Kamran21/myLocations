@@ -9,6 +9,8 @@ import { Formik, Form, Field } from 'formik'
 import { object, string } from 'yup';
 import isEmpty from 'lodash/isEmpty'
 import FormikTextInput from "../common/FormikTextInput";
+import FormikReactDatePicker from "../common/FormikReactDatePicker";
+import moment from 'moment';
 
 class ManageCategoryPage extends Component {
  
@@ -25,8 +27,9 @@ class ManageCategoryPage extends Component {
 
           validationSchema={object().shape({
             name: string()
-              // .min(3, 'Name must be at least 3 characters long.')
-              .required('Name is required.')
+              .required('Name is required.'),
+            date: string()
+              .required('Date is required.').nullable()
           })}
 
           initialValues={
@@ -34,9 +37,11 @@ class ManageCategoryPage extends Component {
           }
 
           onSubmit={(values, formikBag) => {
+            values.date = moment(values.date).format();
             const category = {...this.props.category, ...values};
             if (this.categoryExists(category)) {
               // this.setState({ errors: { name: "This category allready exist!" } });
+              formikBag.setSubmitting(false);
               formikBag.setErrors({'name':'This category allready exists'});
             } else {
               const { createCategory, updateCategory } = this.props.actions;
@@ -54,19 +59,36 @@ class ManageCategoryPage extends Component {
           render={({errors, dirty, isSubmitting, values, setFieldValue}) => (
             <Form>
               <h3 className="my-5 text-capitalize">Manage Location</h3>
+              {/* <input type="hidden" value="prayer" /> */}
               <Field
                 type="text"
                 name="name"
                 label="Name"
                 component={FormikTextInput}
+
               />
-              <button
+              <Field
+                
+                name="date"
+                type="text"
+                component={FormikReactDatePicker}
+                label="Date"
+                dateFormat="YYYY-MM-DD HH:mm"
+                timeFormat="HH:mm"
+                showTimeSelect
+                style={{"zIndex": "999"}}
+                
+              />
+              <div className="form-group"><button
                 type="submit"
                 className="btn btn-default"
+                // style={{"zIndex": "-999"}}
                 disabled={isSubmitting || !isEmpty(errors) || !dirty}
               >
                 Save
               </button>
+              </div>
+              
             </Form>
           )}
 
@@ -85,7 +107,7 @@ ManageCategoryPage.propTypes = {
 
 //Redux connect
 const mapStateToProps = ({ locations, categories }, ownProps) => {
-  let category = { id: "", name: "" };
+  let category = { id: "", name: "", date:"" };
   return {
     category: getElementByID(categories, ownProps.match.params.id) || category,
     locations: locations,
